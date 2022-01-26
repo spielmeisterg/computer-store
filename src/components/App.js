@@ -10,7 +10,7 @@ class App extends Component{
     super()
     this.state = {brands: []}
   }
-  checked = (e) => {
+  checkedBrand = (e) => {
     let updatedBrands = this.state.brands
     if(e.target.checked){
         updatedBrands.push(e.target.id)
@@ -26,7 +26,7 @@ class App extends Component{
         <React.Fragment>
           <Header/>
           <div className="contentContainer">
-            <SortBox checked={this.checked}/>
+            <SortBox checked={this.checkedBrand}/>
             <ProductList products={products} brands={this.state.brands} />
           </div>
         </React.Fragment>
