@@ -10,22 +10,7 @@ class SortBox extends Component{
         this.setState({sliderValue: document.getElementById("price").value})
         document.querySelector("#inputValue").innerText = this.state.sliderValue
     }
-    
-    componentDidMount(){
-        let highestPrice
-        products.forEach(product => {
-            if(highestPrice){
-                if(product.price > highestPrice){
-                    highestPrice = product.price
-                }
-            }
-            else{
-                highestPrice = product.price
-            } 
-        })
-        this.setState({sliderValue: document.getElementById("price").value, highestPrice: highestPrice})
-        document.querySelector("#inputValue").innerText = this.state.sliderValue
-    }
+
 
     render(){
         let categories = []
@@ -42,10 +27,7 @@ class SortBox extends Component{
                         <input type="checkbox" id={product.category} onChange={this.props.checked} /> <p>{product.category}</p>
                     </div>)}
                 })}
-                <hr/>
-                <h3>price:</h3>
-                <input type="range" id="price" value={this.state.sliderValue} name="price" min="0" max={this.state.highestPrice} onChange={this.sliderChange} />
-                <p id="inputValue"></p>
+                <hr />
             </div>
 
 )
