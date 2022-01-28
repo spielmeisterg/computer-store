@@ -7,14 +7,14 @@ class ProductList extends Component{
         if (filtered.length === 0){
             return (
                 <div className="productlist">
-                    {this.props.products.map((item, key) => <Product product={item} key={key} />)}
+                    {this.props.products.map((item, key) => <Product product={item} key={key} addToCart={this.props.addToCart} />)}
                 </div>
             )
         }
         else{
             return (
                 <div className="productlist">
-                    {filtered.map((item, key) => <Product product={item} key={key} />)}
+                    {filtered.map((item, key) => <Product product={item} key={key} addToCart={this.props.addToCart} />)}
                 </div>
             )
         }
