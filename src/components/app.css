@@ -23,7 +23,7 @@ header h1{
     width: 100%;
 }
 .sortbox{
-    width: 25%;
+    width: 100%;
     height: fit-content;
     padding: 2em;
     border-right: 1px solid black;
@@ -65,4 +65,12 @@ header h1{
 }
 .description{
     width: 50%;
+}
+.item{
+    display: flex;
+    border: 1px solid #3c3c3c;
+    gap: 5px;
+}
+.price{
+    float:right;
 }
