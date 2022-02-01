@@ -23,9 +23,12 @@ class SortBox extends Component{
                     if(!categories.includes(product.category)){
                     categories.push(product.category)
                     return(
-                    <div className="flex-horizontal" key={id}>
-                        <input type="checkbox" id={product.category} onChange={this.props.checked} /> <p>{product.category}</p>
-                    </div>)}
+                        <div className="flex-horizontal" key={id}>
+                            <input type="checkbox" id={product.category} onChange={this.props.checked} /> <p>{product.category}</p>
+                        </div>
+                    )}else{
+                        return false
+                    }
                 })}
                 <hr />
             </div>

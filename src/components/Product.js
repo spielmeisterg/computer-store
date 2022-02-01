@@ -13,7 +13,7 @@ class Product extends Component{
                 <div className="flex-vertical">
                     <p>€{price}</p>
                     <p>rating: {rating.rate}</p>
-                    <input type="text" pattern="[0-9]*" />
+                    <input type="number" defaultValue="1" />
                     <button onClick={this.props.addToCart}>add to cart</button>
                 </div>
             </div>
