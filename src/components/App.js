@@ -50,61 +50,6 @@ addToCart = (e) => {
   this.setState(updatedCart)
 
 
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-
-  // let updatedCart = this.state.cart
-  // let {id, price, title} = result[0]
-  
-  
-  // console.log("state:  ",this.state.cart)
-  // let checkdouble = this.state.cart.filter(item => item.id === productId)
-  // console.log("pid", productId)
-  // if(checkdouble){
-  //   if(checkdouble.length){
-  //     let items = this.state.cart
-  //     let i
-  //     let item = items.filter((item, index) => {
-  //       i = index
-  //       return item.id === productId
-  //   })
-  //     item[0].amount++
-  //     items[i] = item[0]
-  //     // updatedCart = items
-  //   }
-  //   else{
-  //     updatedCart.push({amount: 1,id: id, title: title, price: price})
-  //     this.setState({cart: updatedCart})
-  //   }
-  // }
-  
-  
-  
-  
-  
-  
-
 }
   render(){
     return(
