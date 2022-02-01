@@ -24,6 +24,7 @@ class App extends Component{
 }
 addToCart = (e) => {
   const productId = Number(e.target.parentElement.parentElement.id)
+  const input = Number(e.target.previousSibling.value)
   let result = products.filter(item => item.id === productId)
   const {id, title, price} = result[0]
   let updatedCart = this.state.cart 
@@ -37,13 +38,12 @@ addToCart = (e) => {
   
   
   if(duplicate.length === 1){
-    updatedCart[i].amount++
-    console.log("item does exist in cart, adding to amount")
+    // input ? updatedCart[i].amount + input : updatedCart[i].amount++
+    updatedCart[i].amount += input ? input : 1
   }
   else{
 
-    updatedCart.push({amount: 1, title: title, price: price, id: id})
-    console.log("item does not exist, adding to cart")
+    updatedCart.push({amount: input, title: title, price: price, id: id})
   }
 
   i = undefined
