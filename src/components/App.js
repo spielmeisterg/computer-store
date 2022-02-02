@@ -48,14 +48,37 @@ addToCart = (e) => {
 
   i = undefined
   this.setState(updatedCart)
+  this.itemAdded()
+}
+itemAdded(){
+  const hamburger = document.querySelector(".show")
+  hamburger.classList.add("effect")
+  setTimeout(e =>{
+    hamburger.classList.remove("effect")
+  }, 200)
+}
 
-
+sidebarToggle = (e) =>{
+  const header = document.querySelector("header")
+  const sidebar = document.querySelector(".sidebar")
+  
+  header.classList.toggle("right")
+  sidebar.classList.toggle("sidebarhidden")
+  console.log(sidebar)
 }
   render(){
     return(
         <React.Fragment>
           <Header/>
           <div className="contentContainer">
+            <div onClick={this.sidebarToggle} className="show">
+              <img 
+                src="https://upload.wikimedia.org/wikipedia/commons/thumb/b/b2/Hamburger_icon.svg/1024px-Hamburger_icon.svg.png"
+                alt="hamburger menu button" 
+                // width="35px" 
+                // height="35px" 
+              />
+            </div>
             <div className="sidebar">
               <SortBox checked={this.checkedBrand}/>
               <Cart cart={this.state.cart}/>
