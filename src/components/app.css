@@ -5,6 +5,9 @@
     font-family: 'Inconsolata', monospace;
     --img-width: 20%;
 }
+body{
+    overflow-x: hidden;
+}
 header{
     width: 100%;
     height: 40vh;
@@ -14,6 +17,8 @@ header{
     display: flex;
     justify-content: center;
     align-items: center;
+    transition: all .3s ease-in-out;
+    transform: translateX(0);
 }
 header h1{
     font-size: 3em;
@@ -30,7 +35,8 @@ header h1{
     border-bottom: 1px solid black;
 }
 .productlist{
-    width: 75%;
+    width: 90%;
+    margin: 0 auto;
     padding: 2em;
 }
 .product{
@@ -67,10 +73,49 @@ header h1{
     width: 50%;
 }
 .item{
-    display: flex;
-    border: 1px solid #3c3c3c;
+    display: grid;
+    grid-template-columns: .5fr 6fr 1fr;
+    border-bottom: 1px solid #3c3c3c98;
     gap: 5px;
 }
 .price{
     float:right;
+}
+.sidebar{
+    position: fixed;
+    bottom: 0;
+    background-color: rgba(83, 94, 109, 0.8);
+    width: 40%;
+    transform: translateX(-100%);
+    transition: transform .4s ease-in-out;
+    height: 100vh;
+    overflow-y: scroll;
+
+}
+.show img{
+    position: relative;
+    width: 100%;
+    height: 100%;
+}
+.sidebarhidden{
+    transform: translateX(0%);
+}
+.show{
+    z-index: 1;
+    width: 45px;
+    height: 45px;
+    padding: 5px;
+    position: fixed;
+    bottom: 0;
+    transition: all .2s ease-in-out;
+    /* transition: width .4s ease-in-out; */
+}
+.effect{
+    padding: 0;
+}
+.right{
+    /* position: relative; */
+    transition: all .5s ease-in-out;
+    width: 60%;
+    transform: translateX(67%);
 }
