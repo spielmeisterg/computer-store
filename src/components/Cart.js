@@ -13,11 +13,12 @@ class Cart extends Component{
                 {
                     this.props.cart.map(item => {
                             // total += Number(total + (item.price*item.amount).toFixed(2))
-                        return (<div className="item">
-                            <p>{item.amount}</p>
-                            <p>{item.title} </p>
-                            <p className="price">€{(item.price*item.amount).toFixed(2)}</p>
-                        </div>
+                        return (
+                            <div className="item">
+                                <p>{item.amount}</p>
+                                <p>{item.title} </p>
+                                <p className="price">€{(item.price*item.amount).toFixed(2)}</p>
+                            </div>
                         )
                 })
                 }
