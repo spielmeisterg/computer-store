@@ -119,3 +119,8 @@ header h1{
     width: 60%;
     transform: translateX(67%);
 }
+.grid{
+    display: grid;
+    grid-template-columns: 1fr 1fr;
+    width: 70%;
+}

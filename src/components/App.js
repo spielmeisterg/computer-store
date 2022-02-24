@@ -6,6 +6,7 @@ import ProductList from "./ProductList"
 import {products} from "./database"
 import "./app.css"
 
+
 class App extends Component{
   constructor(){
     super()
@@ -79,6 +80,14 @@ removeItem = (e) =>{
   this.setState(stateCopy)
   // console.log("state",this.state)
 }
+sortPrice = (e) => {
+  const lowest = e.target.parentElement.childNodes[1].value
+  const highest = e.target.parentElement.childNodes[5].value
+  const price = {
+    lowest: lowest,
+    highest: highest
+  }
+}
   render(){
     return(
         <React.Fragment>
@@ -93,10 +102,10 @@ removeItem = (e) =>{
               />
             </div>
             <div className="sidebar">
-              <SortBox checked={this.checkedBrand}/>
+              <SortBox checked={this.checkedBrand} price={this.sortPrice}/>
               <Cart cart={this.state.cart} remove={this.removeItem}/>
             </div>
-            <ProductList products={products} brands={this.state.brands} addToCart={this.addToCart} />
+            <ProductList price={this.price} products={products} brands={this.state.brands} addToCart={this.addToCart} />
           </div>
         </React.Fragment>
       )
