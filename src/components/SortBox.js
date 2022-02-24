@@ -5,15 +5,14 @@ class SortBox extends Component{
     constructor(){
         super()
         this.state = ({sliderValue: 0, highestPrice: 0})
+        
+        
     }
-    sliderChange = () => {
-        this.setState({sliderValue: document.getElementById("price").value})
-        document.querySelector("#inputValue").innerText = this.state.sliderValue
-    }
-
 
     render(){
         let categories = []
+        let highest = 0
+        let lowest = 999
         return (
             <div className="sortbox">
                 <h2>sort:</h2>
@@ -31,6 +30,22 @@ class SortBox extends Component{
                     }
                 })}
                 <hr />
+                <h3>price:</h3>
+                {
+                    
+                    products.forEach(item => {
+                        if(item.price > highest){
+                            highest = item.price
+                        }
+                        if(item.price < lowest){
+                            lowest = item.price
+                        }
+                    })
+                }
+                <div className="grid">
+                    <label htmlFor="low">lowest price: </label><input onChange={this.props.price} type="number" id="low" defaultValue={Number(lowest)}/><br/>
+                    <label htmlFor="high"></label>highest price: <input onChange={this.props.price} type="number" id="high" defaultValue={Number(highest)}/>
+                </div>
             </div>
 
 )

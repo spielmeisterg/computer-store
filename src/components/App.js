@@ -6,10 +6,11 @@ import ProductList from "./ProductList"
 import {products} from "./database"
 import "./app.css"
 
+
 class App extends Component{
   constructor(){
     super()
-    this.state = {brands: [], cart: []}
+    this.state = {brands: [], cart: [], price: {higest: 0, lowest: 999}}
   }
   checkedBrand = (e) => {
     let updatedBrands = this.state.brands
@@ -52,6 +53,19 @@ addToCart = (e) => {
   this.setState(stateCopy)
   this.itemAdded()
 }
+componentDidMount(){
+  let price = {highest:0,lowest:999}
+  products.forEach(item => {
+    if(item.price > price.highest){
+        price.highest = item.price
+    }
+    if(item.price < price.lowest){
+        price.lowest = item.price
+    }})
+  const stateCopy = this.state
+  stateCopy.price = price
+  this.setState(stateCopy)
+}
 itemAdded(){
   const hamburger = document.querySelector(".show")
   hamburger.classList.add("effect")
@@ -79,6 +93,17 @@ removeItem = (e) =>{
   this.setState(stateCopy)
   // console.log("state",this.state)
 }
+sortPrice = (e) => {
+  const lowest = e.target.parentElement.childNodes[1].value
+  const highest = e.target.parentElement.childNodes[5].value
+  const price = {
+    lowest: lowest,
+    highest: highest
+  }
+  const stateCopy = this.state
+  stateCopy.price = price
+  this.setState(stateCopy)
+}
   render(){
     return(
         <React.Fragment>
@@ -93,10 +118,10 @@ removeItem = (e) =>{
               />
             </div>
             <div className="sidebar">
-              <SortBox checked={this.checkedBrand}/>
+              <SortBox checked={this.checkedBrand} price={this.sortPrice}/>
               <Cart cart={this.state.cart} remove={this.removeItem}/>
             </div>
-            <ProductList products={products} brands={this.state.brands} addToCart={this.addToCart} />
+            <ProductList price={this.state.price} products={products} brands={this.state.brands} addToCart={this.addToCart} />
           </div>
         </React.Fragment>
       )
