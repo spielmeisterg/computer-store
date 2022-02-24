@@ -27,7 +27,8 @@ addToCart = (e) => {
   const input = Number(e.target.previousSibling.value)
   let result = products.filter(item => item.id === productId)
   const {id, title, price} = result[0]
-  let updatedCart = this.state.cart 
+  let stateCopy = JSON.parse(JSON.stringify(this.state))
+  let updatedCart = stateCopy.cart
   let i
   let duplicate = updatedCart.filter((item, index) => {
     if(item.id === id){
@@ -47,7 +48,8 @@ addToCart = (e) => {
   }
 
   i = undefined
-  this.setState(updatedCart)
+  stateCopy.cart = updatedCart
+  this.setState(stateCopy)
   this.itemAdded()
 }
 itemAdded(){
@@ -64,7 +66,18 @@ sidebarToggle = (e) =>{
   
   header.classList.toggle("right")
   sidebar.classList.toggle("sidebarhidden")
-  console.log(sidebar)
+}
+removeItem = (e) =>{
+  const currentId = Number(e.target.parentElement.parentElement.id)
+  let stateCopy = JSON.parse(JSON.stringify(this.state))
+  let updatedCart = stateCopy.cart
+  updatedCart = updatedCart.filter(item => item.id !== currentId)
+  stateCopy.cart = updatedCart
+  console.log("updatedcart",updatedCart)
+  console.log("stateCopy",stateCopy)
+  console.log("full state", this.state)
+  this.setState(stateCopy)
+  // console.log("state",this.state)
 }
   render(){
     return(
@@ -81,7 +94,7 @@ sidebarToggle = (e) =>{
             </div>
             <div className="sidebar">
               <SortBox checked={this.checkedBrand}/>
-              <Cart cart={this.state.cart}/>
+              <Cart cart={this.state.cart} remove={this.removeItem}/>
             </div>
             <ProductList products={products} brands={this.state.brands} addToCart={this.addToCart} />
           </div>

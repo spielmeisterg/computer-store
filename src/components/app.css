@@ -74,7 +74,7 @@ header h1{
 }
 .item{
     display: grid;
-    grid-template-columns: .5fr 6fr 1fr;
+    grid-template-columns: .5fr 6fr 1fr .1fr;
     border-bottom: 1px solid #3c3c3c98;
     gap: 5px;
 }
