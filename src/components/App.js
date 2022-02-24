@@ -10,7 +10,7 @@ import "./app.css"
 class App extends Component{
   constructor(){
     super()
-    this.state = {brands: [], cart: []}
+    this.state = {brands: [], cart: [], price: {higest: 0, lowest: 999}}
   }
   checkedBrand = (e) => {
     let updatedBrands = this.state.brands
@@ -53,6 +53,19 @@ addToCart = (e) => {
   this.setState(stateCopy)
   this.itemAdded()
 }
+componentDidMount(){
+  let price = {highest:0,lowest:999}
+  products.forEach(item => {
+    if(item.price > price.highest){
+        price.highest = item.price
+    }
+    if(item.price < price.lowest){
+        price.lowest = item.price
+    }})
+  const stateCopy = this.state
+  stateCopy.price = price
+  this.setState(stateCopy)
+}
 itemAdded(){
   const hamburger = document.querySelector(".show")
   hamburger.classList.add("effect")
@@ -87,6 +100,9 @@ sortPrice = (e) => {
     lowest: lowest,
     highest: highest
   }
+  const stateCopy = this.state
+  stateCopy.price = price
+  this.setState(stateCopy)
 }
   render(){
     return(
@@ -105,7 +121,7 @@ sortPrice = (e) => {
               <SortBox checked={this.checkedBrand} price={this.sortPrice}/>
               <Cart cart={this.state.cart} remove={this.removeItem}/>
             </div>
-            <ProductList price={this.price} products={products} brands={this.state.brands} addToCart={this.addToCart} />
+            <ProductList price={this.state.price} products={products} brands={this.state.brands} addToCart={this.addToCart} />
           </div>
         </React.Fragment>
       )
